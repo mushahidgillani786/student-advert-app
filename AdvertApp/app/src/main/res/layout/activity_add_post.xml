@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.mushi.advertapp.AddPost"
+    tools:layout_editor_absoluteY="81dp"
+    tools:layout_editor_absoluteX="0dp">
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="0dp"
+        android:layout_height="94dp"
+        android:backgroundTint="@android:color/holo_orange_dark"
+        android:text="Post Free Add"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginTop="3dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp" />
+
+    <ImageButton
+        android:id="@+id/mobiles"
+        android:layout_width="68dp"
+        android:layout_height="0dp"
+
+        android:background="@drawable/ic_phone_android_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/electronics"
+        app:layout_constraintLeft_toLeftOf="@+id/bikes"
+        app:layout_constraintRight_toRightOf="@+id/bikes"
+        app:layout_constraintTop_toTopOf="@+id/electronics"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1"
+        app:layout_constraintHorizontal_bias="0.0" />
+
+    <ImageButton
+        android:id="@+id/electronics"
+        android:layout_width="68dp"
+        android:layout_height="66dp"
+
+        android:layout_marginStart="120dp"
+        android:background="@drawable/ic_laptop_black_24dp"
+        tools:layout_constraintTop_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintBottom_creator="1"
+        app:layout_constraintBottom_toBottomOf="@+id/property"
+        android:layout_marginEnd="118dp"
+        app:layout_constraintRight_toRightOf="@+id/vehicles"
+        android:layout_marginTop="102dp"
+        app:layout_constraintTop_toBottomOf="@+id/button3"
+        tools:layout_constraintLeft_creator="1"
+        android:layout_marginBottom="104dp"
+        app:layout_constraintLeft_toLeftOf="@+id/mobiles"
+        android:layout_marginLeft="120dp"
+        android:layout_marginRight="118dp"
+        app:layout_constraintVertical_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.477" />
+
+    <ImageButton
+        android:id="@+id/vehicles"
+        android:layout_width="68dp"
+        android:layout_height="0dp"
+
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:background="@drawable/ic_airport_shuttle_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/electronics"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/electronics"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <ImageButton
+        android:id="@+id/bikes"
+        android:layout_width="68dp"
+        android:layout_height="0dp"
+
+        android:layout_marginLeft="50dp"
+        android:layout_marginStart="50dp"
+        android:background="@drawable/ic_motorcycle_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/property"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/property"
+        app:layout_constraintVertical_bias="0.0"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <ImageButton
+        android:id="@+id/property"
+        android:layout_width="68dp"
+        android:layout_height="66dp"
+
+        android:layout_marginBottom="168dp"
+        android:background="@drawable/ic_location_city_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="@+id/electronics"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1" />
+
+    <ImageButton
+        android:id="@+id/furniture"
+        android:layout_width="68dp"
+        android:layout_height="0dp"
+
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:background="@drawable/ic_event_seat_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/property"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/property"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <ImageButton
+        android:id="@+id/animals"
+        android:layout_width="68dp"
+        android:layout_height="66dp"
+
+        android:layout_marginBottom="53dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginStart="36dp"
+        android:background="@drawable/download"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1" />
+
+    <ImageButton
+        android:id="@+id/fashion"
+        android:layout_width="0dp"
+        android:layout_height="66dp"
+
+        android:layout_marginBottom="50dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/ic_color_lens_black_24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.511"
+        app:layout_constraintLeft_toLeftOf="@+id/property"
+        app:layout_constraintRight_toRightOf="@+id/property"
+        app:layout_constraintTop_toBottomOf="@+id/property"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <ImageButton
+        android:id="@+id/kids"
+        android:layout_width="68dp"
+        android:layout_height="0dp"
+
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:background="@drawable/ic_shopping_cart_black_24dp"
+        app:layout_constraintBottom_toBottomOf="@+id/fashion"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/fashion"
+        app:layout_constraintVertical_bias="0.482"
+        tools:layout_constraintBottom_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mobiles"
+        app:layout_constraintTop_toBottomOf="@+id/mobiles"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/mobiles" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Electronics"
+        app:layout_constraintTop_toBottomOf="@+id/electronics"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="8dp"
+        app:layout_constraintLeft_toLeftOf="@+id/electronics" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Vehicles"
+        app:layout_constraintTop_toBottomOf="@+id/vehicles"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="8dp"
+        android:layout_marginStart="7dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/vehicles"
+        android:layout_marginLeft="7dp" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="13dp"
+        android:text="Bikes"
+        app:layout_constraintTop_toBottomOf="@+id/bikes"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="10dp"
+        app:layout_constraintLeft_toLeftOf="@+id/bikes"
+        android:layout_marginLeft="13dp" />
+
+    <TextView
+        android:id="@+id/textView16"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Property slae"
+        app:layout_constraintLeft_toLeftOf="@+id/textView13"
+        app:layout_constraintRight_toRightOf="@+id/textView13"
+        app:layout_constraintTop_toBottomOf="@+id/property"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1"
+        app:layout_constraintHorizontal_bias="0.0"
+        android:layout_marginTop="10dp" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Furnitures"
+        app:layout_constraintTop_toBottomOf="@+id/furniture"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="10dp"
+        tools:layout_constraintLeft_creator="1"
+        app:layout_constraintLeft_toLeftOf="@+id/furniture" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Animals"
+        app:layout_constraintTop_toBottomOf="@+id/animals"
+        tools:layout_constraintTop_creator="1"
+        android:layout_marginTop="9dp"
+        tools:layout_constraintRight_creator="1"
+        android:layout_marginEnd="3dp"
+        app:layout_constraintRight_toRightOf="@+id/animals"
+        android:layout_marginRight="3dp" />
+
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Fashion and Beauty"
+        app:layout_constraintLeft_toLeftOf="@+id/textView16"
+        app:layout_constraintRight_toRightOf="@+id/textView16"
+        app:layout_constraintTop_toBottomOf="@+id/fashion"
+        tools:layout_constraintLeft_creator="1"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1" />
+
+    <TextView
+        android:id="@+id/textView20"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="17dp"
+        android:layout_marginTop="6dp"
+        android:text="Kids"
+        app:layout_constraintTop_toBottomOf="@+id/kids"
+        tools:layout_constraintRight_creator="1"
+        tools:layout_constraintTop_creator="1"
+        app:layout_constraintRight_toRightOf="@+id/kids"
+        android:layout_marginRight="17dp" />
+
+</android.support.constraint.ConstraintLayout>
