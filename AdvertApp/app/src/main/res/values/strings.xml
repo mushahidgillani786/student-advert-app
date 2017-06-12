@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AdvertApp</string>
+    <string name="title_activity_post_add">PostAdd</string>
 </resources>
