@@ -1,18 +1,28 @@
 package com.example.mushi.advertapp;
 
+import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     List<Advertisment> advertisments;
+    Context context;
+public MyAdapter(Context context,List<Advertisment> advertisments){
+    this.context=context;
+    this.advertisments=advertisments;
 
+}
 
 
     // Provide a reference to the views for each data item
@@ -66,8 +76,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.Name.setText(advertisments.get(i).name);
-        holder.Price.setText(advertisments.get(i).price);
-        holder.Photo.setImageResource(advertisments.get(i).photoId);
+        holder.Price.setText("60000");
+        Log.d("Image",advertisments.get(i).getPhotoId());
+        Picasso.with(context)
+                .load(advertisments.get(i).getPhotoId()).into(holder.Photo);
+       // holder.Photo.setImageResource(advertisments.get(i).photoId);
 holder.Location.setText(advertisments.get(i).location);
     }
 

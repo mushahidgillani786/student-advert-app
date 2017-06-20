@@ -8,28 +8,62 @@ import java.util.List;
  */
 
 class Advertisment {
+    int id;
     String name;
     String price;
-    int photoId;
+    String photoId;
     String location;
 
-    Advertisment(String name, String age, int photoId,String location) {
+    Advertisment(int id,String name, String price, String photoId,String location) {
+        this.id=id;
         this.name = name;
-        this.price = age;
+        this.price = price;
         this.photoId = photoId;
         this.location=location;
     }
 
+    public int getId() {
+        return id;
+    }
 
-    private List<Advertisment> advertisment;
+    public void setId(int id) {
+        this.id = id;
+    }
 
-    // This method creates an ArrayList that has three Person objects
-// Checkout the project associated with this tutorial on Github if
-// you want to use the same images.
-    private void initializeData() {
+    public String getName() {
+        return name;
+    }
 
-        advertisment.add(new Advertisment("Emma Wilson", "23 years old", R.drawable.ic_airport_shuttle_black_24dp,"karachi"));
-        advertisment.add(new Advertisment("Lavery Maiss", "25 years old", R.drawable.ic_color_lens_black_24dp,"Lahore"));
+    public void setName(String name) {
+        this.name = name;
+    }
+
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
+    }
+
+    public String getPhotoId() {
+        return photoId;
+    }
+
+    public void setPhotoId(String photoId) {
+        this.photoId = photoId;
 
     }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+
+
 }
