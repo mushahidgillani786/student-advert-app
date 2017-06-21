@@ -50,14 +50,14 @@ public class Post extends AppCompatActivity {
     String encodedImage;
 
     private static final int PICK_PHOTO_FOR_AVATAR = 0;
-    String URL="http://192.168.0.145/Advert/post.php";
+   // String URL="http://192.168.0.145/Advert/post.php";
     RequestQueue queue;
     private BufferedInputStream bufferedInputStream;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post);
+        setContentView(R.layout.post_advert);
         queue = Volley.newRequestQueue(this);
         postObj = new JSONObject();
         items = new String[]{"Mobiles", "Vehicles", "Electronics", "Bikes", "Property sale", "Furniture", "Animals", "Kids", "Fasion & Design"};
@@ -98,6 +98,8 @@ gallery.setOnClickListener(new View.OnClickListener() {
                     postObj.put("location", spiner2.getSelectedItem());
 
                     sendData();
+
+                    startActivity(new Intent(Post.this,ListItemActivity.class));
 
 
 
@@ -166,13 +168,13 @@ gallery.setOnClickListener(new View.OnClickListener() {
         }
             }
 
-
+/*
 
     void postRequest() {
 
 
         JsonObjectRequest jsObjRequest = new JsonObjectRequest
-                (Request.Method.POST, URL, postObj, new Response.Listener<JSONObject>() {
+                (Request.Method.POST, config.ADD, postObj, new Response.Listener<JSONObject>() {
 
 
                     @Override
@@ -191,13 +193,13 @@ gallery.setOnClickListener(new View.OnClickListener() {
         queue.add(jsObjRequest);
     }
 
-
+*/
 
     void sendData(){
 
         RequestQueue queue= Volley.newRequestQueue(this);
-        String url="http://192.168.0.145/Advert/Add.php";
-        StringRequest sr = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
+       // String url="http://192.168.0.145/Advert/Add.php";
+        StringRequest sr = new StringRequest(Request.Method.POST,config.ADD, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 

@@ -1,19 +1,27 @@
 package com.example.mushi.advertapp;
 
 import android.content.Context;
+import android.graphics.Movie;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.Cache;
+import com.android.volley.Network;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
+import com.android.volley.toolbox.BasicNetwork;
+import com.android.volley.toolbox.DiskBasedCache;
+import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
@@ -27,7 +35,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ListItemActivity extends AppCompatActivity {
+public class ListItemActivity extends AppCompatActivity  {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -54,26 +62,41 @@ public class ListItemActivity extends AppCompatActivity {
         // specify an adapter (see also next example)
         advertisment = new ArrayList<>();
 
-               recieveData();
+        recieveData();
 
 
+        mAdapter = new MyAdapter(context, advertisment);
 
-
-
-        mAdapter = new MyAdapter(context,advertisment);
         mRecyclerView.setAdapter(mAdapter);
+
+
+
+
+
     }
-
-
 
 
 
 
     void recieveData(){
 
-        RequestQueue queue= Volley.newRequestQueue(this);
-        String url="http://192.168.0.145/Advert/fetch.php";
-        JsonArrayRequest req = new JsonArrayRequest(url,
+
+
+
+        Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
+
+// Set up the network to use HttpURLConnection as the HTTP client.
+        Network network = new BasicNetwork(new HurlStack());
+
+// Instantiate the RequestQueue with the cache and network.
+       RequestQueue mRequestQueue = new RequestQueue(cache, network);
+
+// Start the queue
+        mRequestQueue.start();
+
+        //RequestQueue queue= Volley.newRequestQueue(this);
+      //String url="http://192.168.0.145/Advert/fetch.php";
+        JsonArrayRequest req = new JsonArrayRequest(config.fetch,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -90,7 +113,7 @@ public class ListItemActivity extends AppCompatActivity {
                                 advertisment.add(new Advertisment(jsonObject.getInt("id"),jsonObject.getString("title"),jsonObject.getString("description"),jsonObject.getString("image"),jsonObject.getString("location")));
 
                             }
-
+                            mAdapter.notifyDataSetChanged();
 
 
                         } catch (JSONException e) {
@@ -110,7 +133,7 @@ public class ListItemActivity extends AppCompatActivity {
                         error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-        queue.add(req);
+        mRequestQueue.add(req);
 
 
 
@@ -120,9 +143,11 @@ public class ListItemActivity extends AppCompatActivity {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-
-      //  recieveData();
+        mAdapter.notifyDataSetChanged();
+        recieveData();
 
 
     }
+
+
 }

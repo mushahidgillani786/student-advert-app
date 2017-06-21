@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
@@ -17,7 +18,7 @@ import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     List<Advertisment> advertisments;
-    Context context;
+   static Context context;
 public MyAdapter(Context context,List<Advertisment> advertisments){
     this.context=context;
     this.advertisments=advertisments;
@@ -28,7 +29,7 @@ public MyAdapter(Context context,List<Advertisment> advertisments){
     // Provide a reference to the views for each data item
     // Complex data items may need more than one view per item, and
     // you provide access to all the views for a data item in a view holder
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder{
         // each data item is just a string in this case
         CardView cv;
         TextView Name;
@@ -49,6 +50,9 @@ public MyAdapter(Context context,List<Advertisment> advertisments){
 
 
         }
+
+
+
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
@@ -72,7 +76,7 @@ public MyAdapter(Context context,List<Advertisment> advertisments){
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, int i) {
+    public void onBindViewHolder(ViewHolder holder, final int i) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.Name.setText(advertisments.get(i).name);
@@ -82,6 +86,15 @@ public MyAdapter(Context context,List<Advertisment> advertisments){
                 .load(advertisments.get(i).getPhotoId()).into(holder.Photo);
        // holder.Photo.setImageResource(advertisments.get(i).photoId);
 holder.Location.setText(advertisments.get(i).location);
+
+        holder.cv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, "item clicked= "+i, Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)

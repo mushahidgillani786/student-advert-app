@@ -101,12 +101,13 @@ return false;
     void sendData(){
 
         RequestQueue queue= Volley.newRequestQueue(this);
-        String url="http://192.168.0.143/Advert/registeration.php";
-        StringRequest sr = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
+       // String url="http://192.168.0.143/Advert/registeration.php";
+        StringRequest sr = new StringRequest(Request.Method.POST,config.REGISTRATION, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
                 Toast.makeText(RegActivity.this, response, Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(RegActivity.this,MainActivity.class));
 
             }
         }, new Response.ErrorListener() {

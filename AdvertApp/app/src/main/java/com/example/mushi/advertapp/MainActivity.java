@@ -78,12 +78,13 @@ signin.setOnClickListener(new View.OnClickListener() {
     void sendData(){
 
         RequestQueue queue= Volley.newRequestQueue(this);
-        String url="http://192.168.0.143/Advert/login.php";
-        StringRequest sr = new StringRequest(Request.Method.POST,url, new Response.Listener<String>() {
+       // String url="http://192.168.0.143/Advert/login.php";
+        StringRequest sr = new StringRequest(Request.Method.POST,config.LOGIN, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
 
-                Toast.makeText(myContext, response, Toast.LENGTH_SHORT).show();
+                Toast.makeText(myContext, response+" === Login success", Toast.LENGTH_SHORT).show();
+               startActivity(new Intent(MainActivity.this,AddPost.class));
 
             }
         }, new Response.ErrorListener() {
