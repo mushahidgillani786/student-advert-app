@@ -1,12 +1,14 @@
 package com.example.mushi.advertapp;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
 import android.media.Image;
+import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Base64;
@@ -48,6 +50,7 @@ public class Post extends AppCompatActivity {
     Context context=Post.this;
     Bitmap bitmap;
     String encodedImage;
+    ProgressDialog progress;
 
     private static final int PICK_PHOTO_FOR_AVATAR = 0;
    // String URL="http://192.168.0.145/Advert/post.php";
@@ -59,6 +62,7 @@ public class Post extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.post_advert);
         queue = Volley.newRequestQueue(this);
+        progress=new ProgressDialog(this);
         postObj = new JSONObject();
         items = new String[]{"Mobiles", "Vehicles", "Electronics", "Bikes", "Property sale", "Furniture", "Animals", "Kids", "Fasion & Design"};
         items2 = new String[]{"Multan", "Lahore", "Islamabad", "Rawalpindi", "Karachi", "Faisalabad"};
@@ -96,11 +100,11 @@ gallery.setOnClickListener(new View.OnClickListener() {
                     postObj.put("title", title.getText().toString());
                     postObj.put("description", description.getText().toString());
                     postObj.put("location", spiner2.getSelectedItem());
-
-                    sendData();
+new PostAsync().execute();
+                   // sendData();
 
                     startActivity(new Intent(Post.this,ListItemActivity.class));
-
+                    finish();
 
 
 
@@ -238,6 +242,33 @@ gallery.setOnClickListener(new View.OnClickListener() {
 
 
     }
+
+    class PostAsync extends AsyncTask<String, String, String> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            // DIALOG_DOWNLOAD_PROGRESS is defined as 0 at start of class
+            progress.show();
+        }
+
+        @Override
+        protected String doInBackground(String... urls) {
+          sendData();
+            return null;
+        }
+
+
+
+        @Override
+        protected void onPostExecute(String unused) {
+
+            progress.dismiss();
+
+        }
+
+    }
+
 
 
 }

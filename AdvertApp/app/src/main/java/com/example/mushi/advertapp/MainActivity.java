@@ -82,10 +82,21 @@ signin.setOnClickListener(new View.OnClickListener() {
         StringRequest sr = new StringRequest(Request.Method.POST,config.LOGIN, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
+//if(response.equals("\nsuccess\n")) {
 
-                Toast.makeText(myContext, response+" === Login success", Toast.LENGTH_SHORT).show();
-               startActivity(new Intent(MainActivity.this,AddPost.class));
 
+    Toast.makeText(myContext, response + " === Login success", Toast.LENGTH_SHORT).show();
+    startActivity(new Intent(MainActivity.this, AddPost.class));
+finish();
+
+//}
+
+
+//else{
+  //  Toast.makeText(myContext, "Invalid Email/Password", Toast.LENGTH_SHORT).show();
+
+
+//}
             }
         }, new Response.ErrorListener() {
             @Override

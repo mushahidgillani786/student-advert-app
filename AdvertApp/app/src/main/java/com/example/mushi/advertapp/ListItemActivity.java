@@ -1,6 +1,10 @@
 package com.example.mushi.advertapp;
 
+import android.app.Activity;
+import android.app.SearchManager;
 import android.content.Context;
+import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.Movie;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -35,14 +39,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ListItemActivity extends AppCompatActivity  {
+public class ListItemActivity extends Activity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     List<Advertisment> advertisment;
     Context context=ListItemActivity.this;
-
-
+    private String customFetch;
+    private int value;
 
 
     @Override
@@ -62,7 +66,18 @@ public class ListItemActivity extends AppCompatActivity  {
         // specify an adapter (see also next example)
         advertisment = new ArrayList<>();
 
+        handleIntent(getIntent());
+
+        Bundle bundle=getIntent().getExtras();
+        if (bundle==null)
+            value=10;
+
+        else
+        value = bundle.getInt("value");
+
+
         recieveData();
+
 
 
         mAdapter = new MyAdapter(context, advertisment);
@@ -96,7 +111,7 @@ public class ListItemActivity extends AppCompatActivity  {
 
         //RequestQueue queue= Volley.newRequestQueue(this);
       //String url="http://192.168.0.145/Advert/fetch.php";
-        JsonArrayRequest req = new JsonArrayRequest(config.fetch,
+        JsonArrayRequest req = new JsonArrayRequest(config.fetch+"?value="+value,
                 new Response.Listener<JSONArray>() {
                     @Override
                     public void onResponse(JSONArray response) {
@@ -143,10 +158,26 @@ public class ListItemActivity extends AppCompatActivity  {
     @Override
     protected void onPostResume() {
         super.onPostResume();
-        mAdapter.notifyDataSetChanged();
-        recieveData();
+      mAdapter.notifyDataSetChanged();
 
 
+
+
+    }
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+
+        handleIntent(intent);
+    }
+
+    private void handleIntent(Intent intent) {
+
+        if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
+            String query = intent.getStringExtra(SearchManager.QUERY);
+            //use the query to search your data somehow
+        }
     }
 
 

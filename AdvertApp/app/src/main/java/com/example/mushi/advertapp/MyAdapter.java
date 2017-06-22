@@ -89,7 +89,7 @@ public MyAdapter(Context context,List<Advertisment> advertisments){
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.Name.setText(advertisments.get(i).name);
-        holder.Price.setText("60000");
+        holder.Price.setText(advertisments.get(i).price);
         Log.d("Image",advertisments.get(i).getPhotoId());
         Picasso.with(context)
                 .load(advertisments.get(i).getPhotoId()).into(holder.Photo);
