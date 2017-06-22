@@ -13,13 +13,24 @@ class Advertisment {
     String price;
     String photoId;
     String location;
+    String description;
 
-    Advertisment(int id,String name, String price, String photoId,String location) {
+    Advertisment(int id,String name, String price, String photoId,String location,String description) {
         this.id=id;
         this.name = name;
         this.price = price;
         this.photoId = photoId;
         this.location=location;
+        this.description=description;
+    }
+
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public int getId() {

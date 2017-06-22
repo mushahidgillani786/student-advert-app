@@ -1,6 +1,7 @@
 package com.example.mushi.advertapp;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -19,9 +20,17 @@ import java.util.List;
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     List<Advertisment> advertisments;
    static Context context;
+
+    Intent intent;
+
+
+
+
+
 public MyAdapter(Context context,List<Advertisment> advertisments){
     this.context=context;
     this.advertisments=advertisments;
+
 
 }
 
@@ -76,7 +85,7 @@ public MyAdapter(Context context,List<Advertisment> advertisments){
 
     // Replace the contents of a view (invoked by the layout manager)
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int i) {
+    public void onBindViewHolder(final ViewHolder holder, final int i) {
         // - get element from your dataset at this position
         // - replace the contents of the view with that element
         holder.Name.setText(advertisments.get(i).name);
@@ -84,12 +93,22 @@ public MyAdapter(Context context,List<Advertisment> advertisments){
         Log.d("Image",advertisments.get(i).getPhotoId());
         Picasso.with(context)
                 .load(advertisments.get(i).getPhotoId()).into(holder.Photo);
+
+
        // holder.Photo.setImageResource(advertisments.get(i).photoId);
 holder.Location.setText(advertisments.get(i).location);
 
         holder.cv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+intent=new Intent(context,DetailView.class);
+                intent.putExtra("title",advertisments.get(i).name);
+                intent.putExtra("location",advertisments.get(i).getLocation());
+                intent.putExtra("id",advertisments.get(i).getId());
+                intent.putExtra("price",advertisments.get(i).getPrice());
+                intent.putExtra("description",advertisments.get(i).getDescription());
+               context.startActivity(intent);
                 Toast.makeText(context, "item clicked= "+i, Toast.LENGTH_SHORT).show();
 
             }

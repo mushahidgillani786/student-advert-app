@@ -110,7 +110,7 @@ public class ListItemActivity extends AppCompatActivity  {
 
                          JSONObject jsonObject=response.getJSONObject(i);
 
-                                advertisment.add(new Advertisment(jsonObject.getInt("id"),jsonObject.getString("title"),jsonObject.getString("description"),jsonObject.getString("image"),jsonObject.getString("location")));
+                                advertisment.add(new Advertisment(jsonObject.getInt("id"),jsonObject.getString("title"),jsonObject.getString("price"),jsonObject.getString("image"),jsonObject.getString("location"),jsonObject.getString("description")));
 
                             }
                             mAdapter.notifyDataSetChanged();
