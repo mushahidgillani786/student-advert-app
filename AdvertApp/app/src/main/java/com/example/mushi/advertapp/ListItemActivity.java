@@ -10,7 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
@@ -39,14 +43,17 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ListItemActivity extends Activity {
+public class ListItemActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
     List<Advertisment> advertisment;
+
     Context context=ListItemActivity.this;
     private String customFetch;
-    private int value;
+    private String value="false";
+    private String searchValue;
+    private boolean flag=false;
 
 
     @Override
@@ -69,20 +76,37 @@ public class ListItemActivity extends Activity {
         handleIntent(getIntent());
 
         Bundle bundle=getIntent().getExtras();
-        if (bundle==null)
-            value=10;
+        if (bundle==null) {
+Log.d("VALUE",""+value);
 
-        else
-        value = bundle.getInt("value");
-
-
-        recieveData();
+        }
+        else {
 
 
+            value=bundle.getString("value");
+          //  if (value==null){
+          //      value=searchValue;
 
-        mAdapter = new MyAdapter(context, advertisment);
 
-        mRecyclerView.setAdapter(mAdapter);
+//            }
+        }
+
+     if(flag!=true) {
+
+         recieveData();
+
+         mAdapter = new MyAdapter(context, advertisment);
+
+         mRecyclerView.setAdapter(mAdapter);
+
+
+
+     }
+
+
+
+
+
 
 
 
@@ -172,13 +196,127 @@ public class ListItemActivity extends Activity {
         handleIntent(intent);
     }
 
+    private void handleIntent2(Intent intent)
+    {
+
+
+
+    }
+
     private void handleIntent(Intent intent) {
 
         if (Intent.ACTION_SEARCH.equals(intent.getAction())) {
             String query = intent.getStringExtra(SearchManager.QUERY);
-            //use the query to search your data somehow
+if (advertisment.size()!=0){
+    int s=advertisment.size();
+for (int i=0;i<s;i++) {
+    advertisment.remove(0);
+}
+}
+            //Toast.makeText(context, ""+query, Toast.LENGTH_SHORT).show();
+searchValue=query;
+            if (!searchValue.isEmpty())
+            flag=true;
+            receiveSearchData();
+            mAdapter = new MyAdapter(context, advertisment);
+
+            mRecyclerView.setAdapter(mAdapter);
+
+
+               mAdapter.notifyDataSetChanged();
+
+            //Intent intent1=new Intent();
+            //intent1.putExtra("value",query);
+
+
+
         }
     }
+
+void receiveSearchData(){
+
+
+    Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
+
+// Set up the network to use HttpURLConnection as the HTTP client.
+    Network network = new BasicNetwork(new HurlStack());
+
+// Instantiate the RequestQueue with the cache and network.
+    RequestQueue mRequestQueue = new RequestQueue(cache, network);
+
+// Start the queue
+    mRequestQueue.start();
+
+    //RequestQueue queue= Volley.newRequestQueue(this);
+    //String url="http://192.168.0.145/Advert/fetch.php";
+    JsonArrayRequest req = new JsonArrayRequest(config.search+"?value="+searchValue,
+            new Response.Listener<JSONArray>() {
+                @Override
+                public void onResponse(JSONArray response) {
+                    Log.d("ListItemActivity", response.toString());
+
+                    try {
+                        // Parsing json array response
+                        // loop through each json object
+                        String jsonResponse = "";
+                        for (int i = 0; i < response.length(); i++) {
+
+                            JSONObject jsonObject=response.getJSONObject(i);
+
+                            advertisment.add(new Advertisment(jsonObject.getInt("id"),jsonObject.getString("title"),jsonObject.getString("price"),jsonObject.getString("image"),jsonObject.getString("location"),jsonObject.getString("description")));
+
+                        }
+                        mAdapter.notifyDataSetChanged();
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                        Toast.makeText(getApplicationContext(),
+                                "Error: " + e.getMessage(),
+                                Toast.LENGTH_LONG).show();
+                    }
+
+
+                }
+            }, new Response.ErrorListener() {
+        @Override
+        public void onErrorResponse(VolleyError error) {
+            VolleyLog.d("ListActivityError", "Error: " + error.getMessage());
+            Toast.makeText(getApplicationContext(),
+                    error.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    });
+    mRequestQueue.add(req);
+
+
+
+
+
+
+
+}
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.options_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+
+        SearchManager searchManager = (SearchManager) ListItemActivity.this.getSystemService(Context.SEARCH_SERVICE);
+
+        SearchView searchView = null;
+        if (searchItem != null) {
+            searchView = (SearchView) searchItem.getActionView();
+        }
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(ListItemActivity.this.getComponentName()));
+        }
+        return super.onCreateOptionsMenu(menu);
+    }
+
 
 
 }

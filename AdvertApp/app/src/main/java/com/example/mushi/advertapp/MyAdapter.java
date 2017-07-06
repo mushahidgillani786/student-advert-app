@@ -65,9 +65,10 @@ public MyAdapter(Context context,List<Advertisment> advertisments){
     }
 
     // Provide a suitable constructor (depends on the kind of dataset)
-    public MyAdapter(List<Advertisment> advertisments) {
-        this.advertisments = advertisments;
+    public MyAdapter(Context context,String[] advertisments) {
+        //this.advertisments = advertisments;
     }
+
 
     // Create new views (invoked by the layout manager)
     @Override

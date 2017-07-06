@@ -68,55 +68,55 @@ add=(Button)findViewById(R.id.button3);
         switch (view.getId()){
 
             case R.id.animals:
-                intent.putExtra("value",7);
+                intent.putExtra("value","Animals");
                 startActivity(intent);
 
                 break;
 
             case R.id.bikes:
-                intent.putExtra("value",4);
+                intent.putExtra("value","Bikes");
                 startActivity(intent);
 
                 break;
 
             case R.id.property:
 
-                intent.putExtra("value",5);
+                intent.putExtra("value","Property sale");
                 startActivity(intent);
                 break;
 
             case R.id.kids:
-                intent.putExtra("value",9);
+                intent.putExtra("value","Kids");
                 startActivity(intent);
 
                 break;
 
             case R.id.fashion:
-                intent.putExtra("value",8);
+                intent.putExtra("value","Fasion & Design");
                 startActivity(intent);
 
                 break;
 
             case R.id.mobiles:
-                intent.putExtra("value",1);
+                intent.putExtra("value","Mobiles");
                 startActivity(intent);
 
                 break;
 
             case R.id.furniture:
-                intent.putExtra("value",6);
+                intent.putExtra("value","Furniture");
                 startActivity(intent);
 
                 break;
 
             case R.id.vehicles:
-                intent.putExtra("value",3);
+                intent.putExtra("value","Vehicles");
                 startActivity(intent);
 
                 break;
 
             case R.id.electronics:
-                intent.putExtra("value",2);
+                intent.putExtra("value","Electronics");
                 startActivity(intent);
 
                 break;

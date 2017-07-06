@@ -6,12 +6,15 @@ package com.example.mushi.advertapp;
 
 public class config
 {
-    static String IP="192.168.1.8";
+    static String IP="192.168.1.3";
      static String REGISTRATION="http://"+config.IP+"/Advert/registeration.php";
      static String LOGIN="http://"+config.IP+"/Advert/login.php";
 static String ADD="http://"+config.IP+"/Advert/Add.php";
 static String fetch="http://"+config.IP+"/Advert/fetch.php";
 
     static String fetchobject="http://"+config.IP+"/Advert/fetchobject.php";
+    static String search="http://"+config.IP+"/Advert/search.php";
+
+
 
 }
