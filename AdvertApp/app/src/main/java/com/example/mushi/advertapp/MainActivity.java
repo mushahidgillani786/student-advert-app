@@ -27,6 +27,9 @@ TextView signup;
     EditText email,password;
     Button signin;
     Context myContext=MainActivity.this;
+    static LoginSession session;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,18 @@ email=(EditText)findViewById(R.id.editText6);
         password=(EditText)findViewById(R.id.editText7);
         signin=(Button)findViewById(R.id.button2);
 signup=(TextView)findViewById(R.id.textView2);
+        session=new LoginSession(MainActivity.this);
+
+        if (session.isLoggedIn()){
+
+            startActivity(new Intent(MainActivity.this, AddPost.class));
+            finish();
+
+
+        }
+
+
+
         signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,6 +101,7 @@ signin.setOnClickListener(new View.OnClickListener() {
 
 
     Toast.makeText(myContext, response + " === Login success", Toast.LENGTH_SHORT).show();
+                session.createLoginSession("",email.getText().toString());
     startActivity(new Intent(MainActivity.this, AddPost.class));
 finish();
 

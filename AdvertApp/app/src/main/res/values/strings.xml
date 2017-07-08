@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">AdvertApp</string>
     <string name="title_activity_post_add">PostAdd</string>
+
+
+    <string name="action_settings">Logout</string>
 </resources>
