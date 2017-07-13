@@ -131,6 +131,7 @@ android:layout_below="@+id/textView10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="PRICE"
+
         android:layout_below="@+id/spinner2"
         android:layout_marginTop="5dp"
 
@@ -145,8 +146,9 @@ android:layout_below="@+id/textView10"
         android:layout_height="80dp"
        android:layout_below="@id/pricetext"
         android:ems="10"
+
         android:hint="Enter Price"
-        android:inputType="textPersonName"
+        android:inputType="number"
 
        />
 

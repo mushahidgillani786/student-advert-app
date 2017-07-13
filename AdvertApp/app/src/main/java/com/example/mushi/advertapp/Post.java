@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -36,6 +37,8 @@ import org.json.JSONObject;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -51,6 +54,7 @@ public class Post extends AppCompatActivity {
     Bitmap bitmap;
     String encodedImage;
     ProgressDialog progress;
+    EditText price;
 
     private static final int PICK_PHOTO_FOR_AVATAR = 0;
    // String URL="http://192.168.0.145/Advert/post.php";
@@ -64,9 +68,10 @@ public class Post extends AppCompatActivity {
         queue = Volley.newRequestQueue(this);
         progress=new ProgressDialog(this);
         postObj = new JSONObject();
-        items = new String[]{"Mobiles", "Vehicles", "Electronics", "Bikes", "Property sale", "Furniture", "Animals", "Kids", "Fasion & Design"};
-        items2 = new String[]{"Multan", "Lahore", "Islamabad", "Rawalpindi", "Karachi", "Faisalabad"};
 
+        items = new String[]{"Mobiles", "Vehicles", "Electronics", "Bikes", "PropertySale", "Furniture", "Animals", "Kids", "FashionDesign"};
+        items2 = new String[]{"Multan", "Lahore", "Islamabad", "Rawalpindi", "Karachi", "Faisalabad"};
+price=(EditText)findViewById(R.id.editText8);
         spiner = (Spinner) findViewById(R.id.spinner);
         spiner2 = (Spinner) findViewById(R.id.spinner2);
         gallery = (Button) findViewById(R.id.gallery);
@@ -100,8 +105,8 @@ gallery.setOnClickListener(new View.OnClickListener() {
                     postObj.put("title", title.getText().toString());
                     postObj.put("description", description.getText().toString());
                     postObj.put("location", spiner2.getSelectedItem());
-new PostAsync().execute();
-                   // sendData();
+
+                   sendData();
 
                     startActivity(new Intent(Post.this,ListItemActivity.class));
                     finish();
@@ -224,6 +229,10 @@ new PostAsync().execute();
                 postObj.put("description", description.getText().toString());
                 postObj.put("location", spiner2.getSelectedItem().toString());
                 postObj.put("image", encodedImage);
+                String timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
+                postObj.put("date",timeStamp);
+                postObj.put("price",price.getText().toString());
+
 
 
                 return postObj;
@@ -240,32 +249,6 @@ new PostAsync().execute();
 
 
 
-
-    }
-
-    class PostAsync extends AsyncTask<String, String, String> {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            // DIALOG_DOWNLOAD_PROGRESS is defined as 0 at start of class
-            progress.show();
-        }
-
-        @Override
-        protected String doInBackground(String... urls) {
-          sendData();
-            return null;
-        }
-
-
-
-        @Override
-        protected void onPostExecute(String unused) {
-
-            progress.dismiss();
-
-        }
 
     }
 

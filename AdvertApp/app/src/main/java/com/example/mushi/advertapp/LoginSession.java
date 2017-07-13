@@ -25,7 +25,7 @@ public class LoginSession {
     int PRIVATE_MODE = 0;
 
     // Sharedpref file name
-    private static final String PREF_NAME = "AndroidHivePref";
+    private static final String PREF_NAME = "m";
 
     // All Shared Preferences Keys
     private static final String IS_LOGIN = "IsLoggedIn";
@@ -35,6 +35,7 @@ public class LoginSession {
 
     // Email address (make variable public to access from outside)
     public static final String KEY_EMAIL = "email";
+    public static final String KEY_TYPE = "user_type";
 
     // Constructor
     public LoginSession(Context context){
@@ -46,7 +47,7 @@ public class LoginSession {
     /**
      * Create login session
      * */
-    public void createLoginSession(String name, String email){
+    public void createLoginSession(String name, String email,String USER_TYPE){
         // Storing login value as TRUE
         editor.putBoolean(IS_LOGIN, true);
 
@@ -55,6 +56,7 @@ public class LoginSession {
 
         // Storing email in pref
         editor.putString(KEY_EMAIL, email);
+        editor.putString(KEY_TYPE,USER_TYPE);
 
         // commit changes
         editor.commit();
@@ -94,6 +96,7 @@ public class LoginSession {
 
         // user email id
         user.put(KEY_EMAIL, pref.getString(KEY_EMAIL, null));
+        user.put(KEY_TYPE,pref.getString(KEY_TYPE,null));
 
         // return user
         return user;

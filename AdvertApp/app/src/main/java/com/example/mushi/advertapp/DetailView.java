@@ -21,6 +21,7 @@ import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -112,6 +113,9 @@ public class DetailView extends AppCompatActivity {
                             description.setText(obj.getString("description"));
                             item.setText(obj.getString("title"));
                             location.setText(obj.getString("location"));
+                            Picasso.with(DetailView.this)
+                                    .load(obj.getString("image")).into(image);
+
                         }
 
                     }catch (Exception e){

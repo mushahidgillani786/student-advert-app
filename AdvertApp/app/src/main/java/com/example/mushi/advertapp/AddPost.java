@@ -17,7 +17,7 @@ import android.widget.ImageButton;
 public class AddPost extends AppCompatActivity implements View.OnClickListener{
 Button add;
     Intent intent;
-    ImageButton mobiles,electronics,vehicles,bikes,propery,furniture,animals,fashion,
+    ImageButton mobiles,electronics,vehicles,bikes,property,furniture,animals,fashion,
     kids;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,7 +28,7 @@ Button add;
         electronics=(ImageButton)findViewById(R.id.electronics);
         vehicles=(ImageButton)findViewById(R.id.vehicles);
         bikes=(ImageButton)findViewById(R.id.bikes);
-        propery=(ImageButton)findViewById(R.id.property);
+        property=(ImageButton)findViewById(R.id.property);
         furniture=(ImageButton)findViewById(R.id.furniture);
         animals=(ImageButton)findViewById(R.id.animals);
         fashion=(ImageButton)findViewById(R.id.fashion);
@@ -38,7 +38,7 @@ Button add;
         electronics.setOnClickListener(this);
         vehicles.setOnClickListener(this);
         bikes.setOnClickListener(this);
-        propery.setOnClickListener(this);
+        property.setOnClickListener(this);
         furniture.setOnClickListener(this);
         animals.setOnClickListener(this);
         fashion.setOnClickListener(this);
@@ -84,7 +84,7 @@ add=(Button)findViewById(R.id.button3);
 
             case R.id.property:
 
-                intent.putExtra("value","Property sale");
+                intent.putExtra("value","PropertySale");
                 startActivity(intent);
                 break;
 
@@ -95,7 +95,7 @@ add=(Button)findViewById(R.id.button3);
                 break;
 
             case R.id.fashion:
-                intent.putExtra("value","Fasion & Design");
+                intent.putExtra("value","FashionDesign");
                 startActivity(intent);
 
                 break;
@@ -165,6 +165,7 @@ add=(Button)findViewById(R.id.button3);
         if (id == R.id.action_settings) {
 
             MainActivity.session.logoutUser();
+            finish();
 
 
             return true;

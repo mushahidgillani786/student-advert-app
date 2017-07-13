@@ -14,16 +14,25 @@ class Advertisment {
     String photoId;
     String location;
     String description;
+    String date;
 
-    Advertisment(int id,String name, String price, String photoId,String location,String description) {
+    Advertisment(int id,String name, String price, String photoId,String location,String description,String date) {
         this.id=id;
         this.name = name;
         this.price = price;
         this.photoId = photoId;
         this.location=location;
         this.description=description;
+        this.date=date;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
 
     public String getDescription() {
         return description;

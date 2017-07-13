@@ -26,8 +26,10 @@ public class MainActivity extends AppCompatActivity {
 TextView signup;
     EditText email,password;
     Button signin;
+
     Context myContext=MainActivity.this;
     static LoginSession session;
+    static String USER_TYPE;
 
 
     @Override
@@ -39,12 +41,26 @@ email=(EditText)findViewById(R.id.editText6);
         signin=(Button)findViewById(R.id.button2);
 signup=(TextView)findViewById(R.id.textView2);
         session=new LoginSession(MainActivity.this);
+        HashMap<String, String> user = new HashMap<String, String>();
+     user=session.getUserDetails();
+        USER_TYPE=user.get(LoginSession.KEY_TYPE);
 
+//String check="\nadmin\n";
+  //      USER_TYPE=check;
         if (session.isLoggedIn()){
+            if (USER_TYPE.contains("admin")) {
 
-            startActivity(new Intent(MainActivity.this, AddPost.class));
-            finish();
+                startActivity(new Intent(MainActivity.this, ListItemActivity.class));
+                finish();
 
+
+            }else{
+
+                startActivity(new Intent(MainActivity.this, AddPost.class));
+                finish();
+
+
+            }
 
         }
 
@@ -101,9 +117,23 @@ signin.setOnClickListener(new View.OnClickListener() {
 
 
     Toast.makeText(myContext, response + " === Login success", Toast.LENGTH_SHORT).show();
-                session.createLoginSession("",email.getText().toString());
-    startActivity(new Intent(MainActivity.this, AddPost.class));
-finish();
+                session.createLoginSession("",email.getText().toString(),response);
+                USER_TYPE=response;
+                if (response.contains("admin")){
+
+                    startActivity(new Intent(MainActivity.this, ListItemActivity.class));
+                    finish();
+
+
+                }
+                else {
+
+                    startActivity(new Intent(MainActivity.this, AddPost.class));
+                    finish();
+
+
+
+                }
 
 //}
 
