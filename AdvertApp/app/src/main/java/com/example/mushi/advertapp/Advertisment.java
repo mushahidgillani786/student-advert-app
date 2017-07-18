@@ -15,8 +15,9 @@ class Advertisment {
     String location;
     String description;
     String date;
+    String phone;
 
-    Advertisment(int id,String name, String price, String photoId,String location,String description,String date) {
+    Advertisment(int id,String name, String price, String photoId,String location,String description,String date,String phone) {
         this.id=id;
         this.name = name;
         this.price = price;
@@ -24,6 +25,16 @@ class Advertisment {
         this.location=location;
         this.description=description;
         this.date=date;
+        this.phone=phone;
+    }
+
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
     public String getDate() {

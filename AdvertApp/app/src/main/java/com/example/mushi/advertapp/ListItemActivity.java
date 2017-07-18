@@ -254,7 +254,7 @@ _sb.insert(0,string2);
 
 
 
-                                advertisment.add(new Advertisment(jsonObject.getInt("id"),jsonObject.getString("title"),jsonObject.getString("price"),jsonObject.getString("image"),jsonObject.getString("location"),jsonObject.getString("description"),jsonObject.getString("date")));
+                                advertisment.add(new Advertisment(jsonObject.getInt("id"),jsonObject.getString("title"),jsonObject.getString("price"),jsonObject.getString("image"),jsonObject.getString("location"),jsonObject.getString("description"),jsonObject.getString("date"),jsonObject.getString("phone")));
 
                             }
                             mAdapter.notifyDataSetChanged();
@@ -274,7 +274,7 @@ _sb.insert(0,string2);
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d("ListActivityError", "Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
+                        "No posts to display", Toast.LENGTH_SHORT).show();
             }
         });
         mRequestQueue.add(req);
@@ -368,7 +368,7 @@ void receiveSearchData(){
 
                             JSONObject jsonObject=response.getJSONObject(i);
 
-                            advertisment.add(new Advertisment(jsonObject.getInt("id"),jsonObject.getString("title"),jsonObject.getString("price"),jsonObject.getString("image"),jsonObject.getString("location"),jsonObject.getString("description"),jsonObject.getString("date")));
+                            advertisment.add(new Advertisment(jsonObject.getInt("id"),jsonObject.getString("title"),jsonObject.getString("price"),jsonObject.getString("image"),jsonObject.getString("location"),jsonObject.getString("description"),jsonObject.getString("date"),jsonObject.getString("phone")));
 
                         }
                         mAdapter.notifyDataSetChanged();
@@ -388,7 +388,7 @@ void receiveSearchData(){
         public void onErrorResponse(VolleyError error) {
             VolleyLog.d("ListActivityError", "Error: " + error.getMessage());
             Toast.makeText(getApplicationContext(),
-                    error.getMessage(), Toast.LENGTH_SHORT).show();
+                    "No posts to display", Toast.LENGTH_SHORT).show();
         }
     });
     mRequestQueue.add(req);
@@ -454,7 +454,7 @@ void receiveSearchData(){
 
                                 JSONObject jsonObject=response.getJSONObject(i);
 
-                                advertisment.add(new Advertisment(jsonObject.getInt("id"),jsonObject.getString("title"),jsonObject.getString("price"),jsonObject.getString("image"),jsonObject.getString("location"),jsonObject.getString("description"),jsonObject.getString("date")));
+                                advertisment.add(new Advertisment(jsonObject.getInt("id"),jsonObject.getString("title"),jsonObject.getString("price"),jsonObject.getString("image"),jsonObject.getString("location"),jsonObject.getString("description"),jsonObject.getString("date"),jsonObject.getString("phone")));
 
                             }
                             mAdapter.notifyDataSetChanged();
@@ -474,7 +474,7 @@ void receiveSearchData(){
             public void onErrorResponse(VolleyError error) {
                 VolleyLog.d("ListActivityError", "Error: " + error.getMessage());
                 Toast.makeText(getApplicationContext(),
-                        error.getMessage(), Toast.LENGTH_SHORT).show();
+                        "No pending posts to display", Toast.LENGTH_SHORT).show();
             }
         });
         mRequestQueue.add(req);

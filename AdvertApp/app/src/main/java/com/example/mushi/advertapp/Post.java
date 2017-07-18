@@ -48,7 +48,7 @@ public class Post extends AppCompatActivity {
     Spinner spiner, spiner2;
     Button gallery, post;
     ImageView imageView;
-    EditText title, description;
+    EditText title, description,phone;
     JSONObject postObj;
     Context context=Post.this;
     Bitmap bitmap;
@@ -79,7 +79,7 @@ price=(EditText)findViewById(R.id.editText8);
         imageView = (ImageView) findViewById(R.id.imageView2);
         title = (EditText) findViewById(R.id.title);
         description = (EditText) findViewById(R.id.description);
-
+        phone = (EditText) findViewById(R.id.phone_num);
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, items);
@@ -212,12 +212,16 @@ gallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onResponse(String response) {
 
-                Toast.makeText(Post.this, response, Toast.LENGTH_SHORT).show();
+                Toast.makeText(Post.this, "Post will show after admins approval", Toast.LENGTH_SHORT).show();
 
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
+
+
+
+
 
             }
         }){
@@ -232,6 +236,7 @@ gallery.setOnClickListener(new View.OnClickListener() {
                 String timeStamp = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss").format(Calendar.getInstance().getTime());
                 postObj.put("date",timeStamp);
                 postObj.put("price",price.getText().toString());
+                postObj.put("phone",phone.getText().toString());
 
 
 

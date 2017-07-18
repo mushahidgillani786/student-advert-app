@@ -114,7 +114,7 @@ signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onResponse(String response) {
 //if(response.equals("\nsuccess\n")) {
-
+if(!response.contains("fail")){
 
     Toast.makeText(myContext, response + " === Login success", Toast.LENGTH_SHORT).show();
                 session.createLoginSession("",email.getText().toString(),response);
@@ -135,14 +135,14 @@ signin.setOnClickListener(new View.OnClickListener() {
 
                 }
 
-//}
+}
 
 
-//else{
-  //  Toast.makeText(myContext, "Invalid Email/Password", Toast.LENGTH_SHORT).show();
+else{
+   Toast.makeText(myContext, "Invalid Email/Password", Toast.LENGTH_SHORT).show();
 
 
-//}
+}
             }
         }, new Response.ErrorListener() {
             @Override
