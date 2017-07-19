@@ -53,6 +53,7 @@ public class ListItemActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private RecyclerView.Adapter mAdapter;
    static Button done;
+    static Button delete;
     private RecyclerView.LayoutManager mLayoutManager;
     List<Advertisment> advertisment;
 
@@ -73,7 +74,9 @@ public class ListItemActivity extends AppCompatActivity {
 
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
 done=(Button)findViewById(R.id.done);
+        delete=(Button)findViewById(R.id.delete);
         done.setVisibility(View.INVISIBLE);
+        delete.setVisibility(View.INVISIBLE);
         // use this setting to improve performance if you know that changes
         // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(false);
@@ -106,6 +109,7 @@ Log.d("VALUE",""+value);
         if (MainActivity.USER_TYPE.contains("admin")){
 
 done.setVisibility(View.VISIBLE);
+            delete.setVisibility(View.VISIBLE);
             receivePendingList();
 
             mAdapter = new MyAdapter(context, advertisment);
@@ -136,7 +140,80 @@ done.setVisibility(View.VISIBLE);
 
 
 
+delete.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
 
+
+        String[] sintegers={""};
+        sintegers=new  String[MyAdapter.list.size()];
+        if (!MyAdapter.list.isEmpty()){
+            for (int i=0;i<MyAdapter.list.size();i++){
+
+
+                sintegers[i]=MyAdapter.list.get(i);
+
+
+
+
+
+            }
+
+
+            String ssintegers= Arrays.toString(sintegers);
+            String[] s1=ssintegers.split(Pattern.quote("["));
+            String string1="";
+            String string2="";
+            for (int i=0;i<s1.length;i++){
+
+                string1+=s1[i];
+
+            }
+
+            String[] s2=string1.split(Pattern.quote("]"));
+            for (int i=0;i<s2.length;i++){
+
+                string2+=s2[i];
+
+            }
+            StringBuilder _sb = new StringBuilder();
+            _sb.insert(0,string2);
+            String string3 =","+_sb;
+            // int integer =Integer.parseInt(string3);
+
+            deletePost(string3);
+
+            if (advertisment.size()!=0){
+                int s=advertisment.size();
+                for (int i=0;i<s;i++) {
+                    advertisment.remove(0);
+                }
+            }
+            try {
+                Thread.sleep(2000);
+            }catch (Exception e){
+
+                e.printStackTrace();
+
+            }
+            receivePendingList();
+
+
+            mAdapter = new MyAdapter(context, advertisment);
+
+            mRecyclerView.setAdapter(mAdapter);
+
+
+            mAdapter.notifyDataSetChanged();
+
+
+
+
+        }
+
+
+    }
+});
 
 
 done.setOnClickListener(new View.OnClickListener() {
@@ -539,7 +616,7 @@ mAdapter.notifyDataSetChanged();
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, ""+error, Toast.LENGTH_SHORT).show();
+
             }
         }){
             @Override
@@ -571,6 +648,66 @@ mAdapter.notifyDataSetChanged();
 
     }
 
+    void deletePost(final String status){
 
+
+
+
+        Cache cache = new DiskBasedCache(getCacheDir(), 1024 * 1024); // 1MB cap
+
+// Set up the network to use HttpURLConnection as the HTTP client.
+        Network network = new BasicNetwork(new HurlStack());
+
+// Instantiate the RequestQueue with the cache and network.
+        RequestQueue queue = new RequestQueue(cache, network);
+
+// Start the queue
+        queue.start();
+
+        //RequestQueue queue= Volley.newRequestQueue(this);
+        //String url="http://192.168.0.145/Advert/fetch.php";
+        StringRequest sr = new StringRequest(Request.Method.POST,config.delete_post, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+//if(response.equals("\nsuccess\n")) {
+                mAdapter.notifyDataSetChanged();
+                Toast.makeText(context, ""+response, Toast.LENGTH_SHORT).show();
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+
+                params.put("value",status);
+
+
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+
+
+        queue.add(sr);
+
+
+
+
+
+
+    }
 
 }

@@ -16,5 +16,5 @@ static String fetch="http://"+config.IP+"/Advert/fetch.php";
     static String search="http://"+config.IP+"/Advert/search.php";
     static String pending="http://"+config.IP+"/Advert/fetch_pending.php";
     static String change_status="http://"+config.IP+"/Advert/change_status.php";
-
+    static String delete_post="http://"+config.IP+"/Advert/delete_post.php";
 }

@@ -1,9 +1,11 @@
 package com.example.mushi.advertapp;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,6 +43,7 @@ public class DetailView extends AppCompatActivity {
     int idd;
     String locationn;
     String pricee;
+    private String phone_string;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,26 @@ public class DetailView extends AppCompatActivity {
         pricee = bundle.getString("price");
         idd = bundle.getInt("id");
         locationn = bundle.getString("location");
+
+        call.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(Intent.ACTION_DIAL, Uri.parse("tel:" + phone_string));
+                startActivity(intent);
+
+
+            }
+        });
+
+        text.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", phone_string, null)));
+
+            }
+        });
 
 
         Toast.makeText(this, "" + idd, Toast.LENGTH_SHORT).show();
@@ -113,6 +136,7 @@ public class DetailView extends AppCompatActivity {
                             description.setText(obj.getString("description"));
                             item.setText(obj.getString("title"));
                             location.setText(obj.getString("location"));
+                            phone_string=obj.getString("phone");
                             Picasso.with(DetailView.this)
                                     .load(obj.getString("image")).into(image);
 
