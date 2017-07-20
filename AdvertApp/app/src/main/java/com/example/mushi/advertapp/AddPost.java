@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
+
+
 public class AddPost extends AppCompatActivity implements View.OnClickListener{
 Button add;
     Intent intent;
@@ -46,6 +48,13 @@ Button add;
         mobiles.setOnClickListener(this);
 intent=new Intent(AddPost.this,ListItemActivity.class);
 add=(Button)findViewById(R.id.button3);
+
+        if (MainActivity.USER_TYPE.contains("auser")){
+            add.setVisibility(View.INVISIBLE);
+
+        }
+
+
         add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,8 +65,6 @@ add=(Button)findViewById(R.id.button3);
 
             }
         });
-
-
 
 
 

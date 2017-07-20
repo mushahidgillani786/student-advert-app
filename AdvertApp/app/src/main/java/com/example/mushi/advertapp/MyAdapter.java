@@ -84,7 +84,7 @@ date=(TextView) itemView.findViewById(R.id.date);
     public MyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View v;
         // create a new view
-        if (MainActivity.USER_TYPE.contains("\nadmin\n")) {
+        if (MainActivity.USER_TYPE.contains("admin")||MainActivity.USER_TYPE.contains("adminau")) {
             v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.checkbox_layout, parent, false);
 
@@ -126,7 +126,7 @@ holder.check.setOnClickListener(new View.OnClickListener() {
 
 
             list.add(Integer.toString(advertisments.get(i).getId()));
-            Toast.makeText(context, ""+advertisments.get(i).getId(), Toast.LENGTH_SHORT).show();
+         //   Toast.makeText(context, ""+advertisments.get(i).getId(), Toast.LENGTH_SHORT).show();
 
         }
         else
@@ -144,7 +144,7 @@ holder.check.setOnClickListener(new View.OnClickListener() {
 
     }
 });}
-        if (MainActivity.USER_TYPE.contains("admin")) {
+        if (MainActivity.USER_TYPE.contains("admin")||MainActivity.USER_TYPE.contains("adminau")) {
 
             holder.cv2.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -157,7 +157,7 @@ holder.check.setOnClickListener(new View.OnClickListener() {
                     intent.putExtra("price", advertisments.get(i).getPrice());
                     intent.putExtra("description", advertisments.get(i).getDescription());
                     context.startActivity(intent);
-                    Toast.makeText(context, "item clicked= " + i, Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(context, "item clicked= " + i, Toast.LENGTH_SHORT).show();
 
                 }
             });
@@ -177,7 +177,7 @@ holder.check.setOnClickListener(new View.OnClickListener() {
                     intent.putExtra("price", advertisments.get(i).getPrice());
                     intent.putExtra("description", advertisments.get(i).getDescription());
                     context.startActivity(intent);
-                    Toast.makeText(context, "item clicked= " + i, Toast.LENGTH_SHORT).show();
+                 //   Toast.makeText(context, "item clicked= " + i, Toast.LENGTH_SHORT).show();
 
                 }
             });

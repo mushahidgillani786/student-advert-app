@@ -85,7 +85,7 @@ public class DetailView extends AppCompatActivity {
         });
 
 
-        Toast.makeText(this, "" + idd, Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(this, "" + idd, Toast.LENGTH_SHORT).show();
 
         recieveData();
     }
@@ -116,7 +116,7 @@ public class DetailView extends AppCompatActivity {
             @Override
             public void onResponse(JSONArray response) {
 
-                Toast.makeText(DetailView.this, ""+response.toString(), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(DetailView.this, ""+response.toString(), Toast.LENGTH_SHORT).show();
 
          if(response.length()==0){
 

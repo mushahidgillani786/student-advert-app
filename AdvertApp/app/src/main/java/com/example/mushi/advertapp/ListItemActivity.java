@@ -108,10 +108,18 @@ Log.d("VALUE",""+value);
 
         if (MainActivity.USER_TYPE.contains("admin")){
 
-done.setVisibility(View.VISIBLE);
+//done.setVisibility(View.VISIBLE);
             delete.setVisibility(View.VISIBLE);
-            receivePendingList();
+            if (MainActivity.USER_TYPE.contains("au")){
+  done.setVisibility(View.INVISIBLE);
+                delete.setVisibility(View.VISIBLE);
+             recieveData();
 
+            }else {
+                done.setVisibility(View.VISIBLE);
+                delete.setVisibility(View.VISIBLE);
+                receivePendingList();
+            }
             mAdapter = new MyAdapter(context, advertisment);
 
             mRecyclerView.setAdapter(mAdapter);
@@ -609,7 +617,7 @@ void receiveSearchData(){
             public void onResponse(String response) {
 //if(response.equals("\nsuccess\n")) {
 mAdapter.notifyDataSetChanged();
-                Toast.makeText(context, ""+response, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Posts have been approved", Toast.LENGTH_SHORT).show();
 
 
             }
@@ -671,7 +679,7 @@ mAdapter.notifyDataSetChanged();
             public void onResponse(String response) {
 //if(response.equals("\nsuccess\n")) {
                 mAdapter.notifyDataSetChanged();
-                Toast.makeText(context, ""+response, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Posts have been deleted", Toast.LENGTH_SHORT).show();
 
 
             }

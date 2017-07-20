@@ -50,7 +50,10 @@ signup=(TextView)findViewById(R.id.textView2);
         if (session.isLoggedIn()){
             if (USER_TYPE.contains("admin")) {
 
-                startActivity(new Intent(MainActivity.this, ListItemActivity.class));
+             //   startActivity(new Intent(MainActivity.this, ListItemActivity.class));
+               // finish();
+
+                startActivity(new Intent(MainActivity.this,AdminMain_Activity.class));
                 finish();
 
 
@@ -121,9 +124,8 @@ if(!response.contains("fail")){
                 USER_TYPE=response;
                 if (response.contains("admin")){
 
-                    startActivity(new Intent(MainActivity.this, ListItemActivity.class));
+                    startActivity(new Intent(MainActivity.this,AdminMain_Activity.class));
                     finish();
-
 
                 }
                 else {
